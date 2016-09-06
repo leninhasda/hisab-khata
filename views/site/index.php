@@ -3,7 +3,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Finance Log';
 ?>
 <div class="site-index">
 

@@ -30,8 +30,11 @@ AppAsset::register($this);
         'brandLabel' => 'finance',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-fixed-top',
-            
+            'class' => 'navbar navbar-inverse navbar-fixed-top',
+            'style' => 'margin:0;'
+        ],
+        'innerContainerOptions' => [
+            'class'=>'container-fluid'
         ],
     ]);
     echo Nav::widget([
@@ -45,16 +48,16 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="container">
+    <div class="container-fluid" style="margin-top: 51px;">
         <?= $content ?>
     </div>
 </div>
 
 <footer class="footer">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <p class="pull-left">&copy; leninhasda</p>
-            <p class="pull-right"><em>last update: <?=date('Y-m-d', strtotime('8 february 2016'))?></em></p>
+            <div class="col-xs-12 col-sm-6">&copy; leninhasda</div>
+            <div class="col-xs-12 col-sm-6 text-right"><em>last update: <?=date('Y-m-d', strtotime('8 february 2016'))?></em></div>
         </div>  
     </div>
 </footer>

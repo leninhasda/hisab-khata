@@ -14,9 +14,12 @@ use kartik\date\DatePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'item')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'item')->textInput([
+        'maxlength' => true
+        , 'autofocus' => 'true'
+    ]) ?>
 
-    <?= $form->field($model, 'desc')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'desc')->textarea(['rows' => 4]) ?>
 
     <?= $form->field($model, 'type')->dropDownList(['Credit' => 'Credit', 'Debit' => 'Debit']) ?>
 

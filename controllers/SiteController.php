@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
+use app\models\Log;
 
 class SiteController extends Controller
 {
@@ -46,6 +47,23 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    public function actionTest()
+    {
+        $model = new Log;
+        $tableSchema = $model->getTableSchema();
+        $column = $tableSchema->columns['type'];
+
+        if (is_array($column->enumValues) && count($column->enumValues) > 0) {
+            $dropDownOptions = [];
+            foreach ($column->enumValues as $enumValue) {
+                $dropDownOptions[$enumValue] = \yii\helpers\Inflector::humanize($enumValue);
+            }
+        }
+
+        $var = $dropDownOptions;
+        var_dump($var);
     }
 
     public function actionIndex()
