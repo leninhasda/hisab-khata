@@ -39,7 +39,7 @@ AppAsset::register($this);
                     'items' => [
                         ['label' => '<i class="ti-panel"></i><p>Dashboard</p>', 'url' => ['/site/index']],
                         ['label' => '<i class="ti-view-list-alt"></i><p>Logs</p>', 'url' => ['/log/index']],
-                        ['label' => '<i class="ti-map"></i><p>Reports</p>', 'url' => ['/report/index']],
+                        ['label' => '<i class="ti-stats-up"></i><p>Reports</p>', 'url' => ['/report/index']],
                         ['label' => '<i class="ti-user"></i><p>Profile</p>', 'url' => ['/report/index']],
                     ],
                 ]);
