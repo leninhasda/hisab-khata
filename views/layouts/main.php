@@ -22,47 +22,115 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
-<?php $this->beginBody() ?>
+    <?php $this->beginBody() ?>
+    <div class="wrapper">
+        <div class="sidebar" data-background-color="white" data-active-color="danger">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="<?=Yii::$app->homeUrl?>" class="simple-text">
+                        Hisab Khata
+                    </a>
+                </div>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'finance',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-inverse navbar-fixed-top',
-            'style' => 'margin:0;'
-        ],
-        'innerContainerOptions' => [
-            'class'=>'container-fluid'
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Report', 'url' => ['/report/index']],
-            ['label' => 'Log', 'url' => ['/log/index']],
-        ],
-    ]);
-    NavBar::end();
-    ?>
+                <?php
+                echo Nav::widget([
+                    'encodeLabels' => false,
+                    'options' => ['class' => 'nav'],
+                    'items' => [
+                        ['label' => '<i class="ti-panel"></i><p>Dashboard</p>', 'url' => ['/site/index']],
+                        ['label' => '<i class="ti-view-list-alt"></i><p>Logs</p>', 'url' => ['/log/index']],
+                        ['label' => '<i class="ti-map"></i><p>Reports</p>', 'url' => ['/report/index']],
+                        ['label' => '<i class="ti-user"></i><p>Profile</p>', 'url' => ['/report/index']],
+                    ],
+                ]);
+                ?>
+            </div>
+        </div>
 
-    <div class="container-fluid" style="margin-top: 51px;">
-        <?= $content ?>
+        <div class="main-panel">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar bar1"></span>
+                            <span class="icon-bar bar2"></span>
+                            <span class="icon-bar bar3"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Dashboard</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-panel"></i>
+                                    <p>Stats</p>
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-bell"></i>
+                                    <p class="notification">5</p>
+                                    <p>Notifications</p>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Notification 1</a></li>
+                                    <li><a href="#">Notification 2</a></li>
+                                    <li><a href="#">Notification 3</a></li>
+                                    <li><a href="#">Notification 4</a></li>
+                                    <li><a href="#">Another notification</a></li>
+                                </ul>
+                            </li> -->
+                            <li>
+                                <a href="#">
+                                    <i class="ti-export"></i>
+                                    <p>Logout</p>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <?= $content ?>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+
+                            <li>
+                                <a href="https://jonaklab.com">
+                                    JonakLab
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://blog.creative-tim.com">
+                                    Hisab Khata
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.creative-tim.com/license">
+                                    Licenses
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright pull-right">
+                        &copy; <?php echo date('Y')?>, made with <i class="fa fa-heart heart"></i> by <a href="https://leninhasda.me">Lenin Hasda</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
     </div>
-</div>
 
-<footer class="footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6">&copy; leninhasda</div>
-            <div class="col-xs-12 col-sm-6 text-right"><em>last update: <?=date('Y-m-d', strtotime('8 february 2016'))?></em></div>
-        </div>  
-    </div>
-</footer>
-
-<?php $this->endBody() ?>
+    <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
