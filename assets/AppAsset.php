@@ -20,10 +20,19 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-      'css/site.css',
+      'css/animate.min.css',
+      'css/paper-dashboard.css',
+      'http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css',
+      'https://fonts.googleapis.com/css?family=Muli:400,300',
+      'css/themify-icons.css',
+      // 'css/site.css',
     ];
     public $js = [
-      'js/app.js'
+      'js/bootstrap-checkbox-radio.js',
+      'js/bootstrap-notify.js',
+      'js/chartist.min.js',
+      'js/paper-dashboard.js',
+      // 'js/app.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
