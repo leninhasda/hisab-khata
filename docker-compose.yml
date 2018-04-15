@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+
+  app:
+    build: ./docker/
+    # command: manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/var/www/html
+    ports:
+    - 8000:80
+    links:
+    - database
+    depends_on:
+    - database
+
+  database:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "secret"
+      MYSQL_DATABASE: "fn_db"
+      # MYSQL_USER: "${DB_USERNAME}"
+      # MYSQL_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+     - ./storage/mysql:/var/lib/mysql

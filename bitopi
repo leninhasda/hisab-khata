@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Is the environment running
+PSRESULT="$(docker-compose ps -q)"
+if [ ! -z "$PSRESULT" ]; then
+    EXEC="yes"
+else
+    EXEC="no"
+fi
+
+
+
+# Create base docker-compose command to run
+COMPOSE="docker-compose -f docker-compose.yml"
+
+if [ $# -gt 0 ]; then
+
+	# docker-compose up --build
+	# docker-compose up
+
+	if [ -f .env ]; then
+        source .env
+    fi
+
+    if [ "$1" == "init" ]; then
+        chmod +x bitopi
+    	echo "init run"
+
+    # Start up containers
+    elif [ "$1" == "start" ]; then
+        $COMPOSE up -d
+    # Stop the containers
+    elif [ "$1" == "stop" ]; then
+        $COMPOSE down
+    else
+    	if [ "$EXEC" == "yes" ]; then
+    		$COMPOSE exec -u bitopi app "$@"
+    	else
+    		$COMPOSE run --rm "$@"
+    	fi
+    fi
+else
+    # Use the docker-compose ps command if nothing else passed through
+    $COMPOSE ps
+fi
