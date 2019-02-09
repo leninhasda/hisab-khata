@@ -31,10 +31,12 @@ class AppAsset extends AssetBundle
       'js/bootstrap-checkbox-radio.js',
       'js/bootstrap-notify.js',
       'js/chartist.min.js',
-      'js/paper-dashboard.js',
+      // 'js/paper-dashboard.js',
+      // 'js/demo.js'
       // 'js/app.js'
     ];
     public $depends = [
+        'yii\jui\JuiAsset',
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];

@@ -12,18 +12,21 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Logs');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="log-index">
+<div class="log-index card">
 
-    <h1 class="clearfix"><?= Html::encode($this->title) ?>
-        <?= Html::a(Yii::t('app', 'Create Log'), ['create'], ['class' => 'btn btn-success pull-right']) ?>
-    </h1>
+    <div class="header">
+        <h4 class="title clearfix"><?= Html::encode($this->title) ?>
+            <?= Html::a(Yii::t('app', 'Create Log'), ['create'], ['class' => 'btn btn-success pull-right btn-sm btn-fill']) ?>
+        </h4>
+    </div>
     <?php Pjax::begin() ?>
+    <div class="content table-responsive table-full-width">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'summary' => false,
         'tableOptions' => [
-            'class' => 'table table-bordered table-condensed table-hover',
+            'class' => 'table table-condensed table-hover',
         ],
         'columns' => [
             [
@@ -42,17 +45,26 @@ $this->params['breadcrumbs'][] = $this->title;
                             'style' => 'display:block;',
                         ]);
                     return $item;
-                }
+                },
+                'headerOptions' => [
+                    'width' => '255',
+                ],
             ],
-            'desc:ntext',
+            [
+                'attribute' => 'desc',
+                'format' => 'ntext',
+                'headerOptions' => [
+                    'width' => '255',
+                ],
+            ],
             [
                 'attribute' => 'type',
                 'format' => 'html',
                 'value' => function ($model) {
-                    if( 'Credit' == $model->type ) {
+                    if( 'credit' == strtolower($model->type) ) {
                         $class = 'label alert-danger';
-                    } else if( 'Debit' == $model->type ) {
-                        $class = 'label alert-success';                        
+                    } else if( 'debit' == strtolower($model->type) ) {
+                        $class = 'label alert-success';
                     }
                     $type = Html::tag('span', $model->type, [
                             'class' => $class,
@@ -66,9 +78,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => [
                     'style' => 'text-align: center;',
                 ],
-                'filter' => Html::activeDropDownList($searchModel, 'type', 
+                'filter' => Html::activeDropDownList($searchModel, 'type',
                     ['Credit' => 'Credit', 'Debit' => 'Debit'],
-                    [ 
+                    [
                         'class'=>'form-control','prompt' => ''
                     ]
                 ),
@@ -99,31 +111,36 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => [
                     'style' => 'text-align: center;',
                 ],
-                'filter' => (Html::activeDropDownList($searchModel, 'datetime', 
+                'filter' => (Html::activeDropDownList($searchModel, 'datetime',
                     array_combine (
                         array_map (
                             function($el){
                                 return (string) sprintf("-%02d-", $el);
                             }, range(1,12)
-                        ), 
-                        array_values(cal_info(0)['months'])
+                        ),
+                        ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"]
+                        // array_values(cal_info(0)['months'])
                     ),
                     // ['Credit' => 'Credit', 'Debit' => 'Debit'],
-                    [ 
+                    [
                         'class'=>'form-control','prompt' => ''
                     ]
                 )),
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{delete}',
-                'headerOptions' => [
-                    'style' => 'text-align: center;',
-                    'width' => '40',
-                ],
+                // 'template' => '{update} {delete}',
+                // 'headerOptions' => [
+                    // 'style' => 'text-align: right;',
+                //     'width' => '40',
+                // ],
+                'contentOptions' => [
+                    'style' => 'text-align: right;',
+                ]
             ],
         ],
     ]); ?>
+    </div>
     <?php Pjax::end() ?>
 
 </div>
