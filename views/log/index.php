@@ -19,6 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a(Yii::t('app', 'Create Log'), ['create'], ['class' => 'btn btn-success pull-right btn-sm btn-fill']) ?>
         </h4>
     </div>
+
+    <?= $this->render('_form.inline.php', ['model' => $model]) ?>
+
     <?php Pjax::begin() ?>
     <div class="content table-responsive table-full-width">
     <?= GridView::widget([

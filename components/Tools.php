@@ -13,7 +13,7 @@ class Tools extends Component
 	public static function today($format = '')
 	{
 		if( empty( $format ) ) {
-			$format = 'Y-m-d H:i:s';
+			$format = 'Y-m-d';
 		}
 		return date($format, time());
 	}
